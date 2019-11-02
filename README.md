@@ -1,1 +1,1 @@
-# codejam-virtual-keyboard
+# https://egor-alexandrovich.github.io/codejam-virtual-keyboard/
