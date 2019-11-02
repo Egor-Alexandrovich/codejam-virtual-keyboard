@@ -23,7 +23,7 @@ body {
     display: flex;
     flex-direction: column;
 }
-.row {
+.row0, .row1, .row2, .row3, .row4  {
     display: flex;
     justify-content: center;
 }
