@@ -79,7 +79,15 @@ function returnObj(arr, item){
         }
     }
 }
-let changeLang = false;
+
+function clickListener(){
+    document.querySelector('.keyboard').addEventListener('click', function(event) {
+        let btn2 = returnObj(arrkeyboard, parseInt(event.target.id));
+        console.log(btn2);
+        
+    });
+}
+
 document.addEventListener('keydown', function(event) {
     event.preventDefault();
     document.getElementById(String(event.which)).classList.add('active');
@@ -92,12 +100,13 @@ document.addEventListener('keyup', function(event) {
     let btn = returnObj(arrkeyboard,event.which);
     document.getElementById(String(event.which)).classList.remove('active');
     if (event.shiftKey){textAreaStack.push(btn.textBtn.toUpperCase())}
-    else {textAreaStack.push(btn.textBtn.toLowerCase())}
-    //textAreaStack.push(btn.textBtn.toLowerCase());
+    else {textAreaStack.push(btn.textBtn.toLowerCase())};
     document.getElementById('textarea').value = textAreaStack.join('');
     document.querySelector('.keyboard').remove()
     document.body.children[0].insertAdjacentHTML('beforeend', '<div class="keyboard"></div>');
-    loadKeyboard(lang); 
-    
-    
+    loadKeyboard(lang);
+    clickListener();
+     
 });
+
+clickListener();
