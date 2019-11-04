@@ -4,22 +4,54 @@ class Btn {
       this.lang = lang;
       this.cssClass = cssClass;
       this.textEng = textEng;
-      this.textRu = textRu; 
+      this.textRu = textRu;
+      this.shiftBtn = false;
+      this.capsLockDtn = false; 
     }
     get textBtn() {
         if(this.lang === 'ru') return this.textRu
         else return this.textEng;
       }
     print() {
-
+        if(this.shiftBtn) {
+            if(this.lang === 'ru') return this.textRu
+            else return this.textEng;
+        }
+        else {
+            if(this.lang === 'ru') return this.textRu.toLowerCase()
+            else return this.textEng.toLowerCase();
+            }
     }
   }
+  class BtnSup extends Btn {
+    constructor(keyCode,lang,cssClass,text,supEng,supRu ) {
+        super(keyCode,lang,cssClass,text,text);
+        this.text = text;
+        this.supEng = supEng;
+        this.supRu = supRu;
+    }
+    get textBtn() {
+        if(this.lang === 'ru') return super.textBtn + `<sup>${this.supRu}</sup>`
+        else return super.textBtn + `<sup>${this.supEng}</sup>`;
+      }
+      print() {
+        if(this.shiftBtn) {
+            if(this.lang === 'ru') return this.supRu
+            else return this.supEng;
+        }
+        else {
+            return this.text;
+            }
+        }
+  }
 let lang = 'ru';
-key1 = new Btn(192,lang,'button','`','Ё');key2 = new Btn(49,lang,'button','1','1');key3 = new Btn(50,lang,'button','2','2');
-key4 = new Btn(51,lang,'button','3','3');key5 = new Btn(52,lang,'button','4','4');key6 = new Btn(53,lang,'button','5','5');
-key7 = new Btn(54,lang,'button','6','6');key8 = new Btn(55,lang,'button','7','7');key9 = new Btn(56,lang,'button','8','8');
-key10 = new Btn(57,lang,'button','9','9');key11 = new Btn(48,lang,'button','0','0'); key12 = new Btn(189,lang,'button','-','-');
-key13 = new Btn(187,lang,'button','=','=');key14 = new Btn(8,lang,'button backspace','backspace','backspace');
+key1 = new Btn(192,lang,'button','`','Ё');key2 = new BtnSup(49,lang,'button','1','!','!');
+key3 = new BtnSup(50,lang,'button','2','@','\"');key4 = new BtnSup(51,lang,'button','3','#','№');
+key5 = new BtnSup(52,lang,'button','4','$',';');key6 = new BtnSup(53,lang,'button','5','%','%');
+key7 = new BtnSup(54,lang,'button','6','^',':');key8 = new BtnSup(55,lang,'button','7','&','?');
+key9 = new BtnSup(56,lang,'button','8','*','*');key10 = new BtnSup(57,lang,'button','9','(','(');
+key11 = new BtnSup(48,lang,'button','0',')',')'); key12 = new BtnSup(189,lang,'button','-','_','_');
+key13 = new BtnSup(187,lang,'button','=','+','+');key14 = new Btn(8,lang,'button backspace','backspace','backspace');
 
 key15 = new Btn(9,lang,'button tab','Tab','Tab'); key16 = new Btn(81,lang,'button','Q','Й');
 key17 = new Btn(87,lang,'button','W','Ц');key18 = new Btn(69,lang,'button','E','У');
@@ -89,6 +121,8 @@ function clickListener(){
 }
 
 document.addEventListener('keydown', function(event) {
+    //textarea.focus();
+    //textArea.value.slice(0,textArea.length-1);
     event.preventDefault();
     document.getElementById(String(event.which)).classList.add('active');
     if (event.key == 'Shift' && (event.ctrlKey)|| event.metaKey) {
@@ -99,9 +133,15 @@ document.addEventListener('keyup', function(event) {
     event.preventDefault();
     let btn = returnObj(arrkeyboard,event.which);
     document.getElementById(String(event.which)).classList.remove('active');
-    if (event.shiftKey){textAreaStack.push(btn.textBtn.toUpperCase())}
-    else {textAreaStack.push(btn.textBtn.toLowerCase())};
+    if (event.shiftKey){btn.shiftBtn = true}
+    else {btn.shiftBtn = false};
+    textAreaStack.push(btn.print());
     document.getElementById('textarea').value = textAreaStack.join('');
+    /*if (event.shiftKey){textAreaStack.push(btn.textBtn.toUpperCase())}
+    else {textAreaStack.push(btn.textBtn.toLowerCase())};
+    document.getElementById('textarea').value = textAreaStack.join('');*/
+    
+    
     document.querySelector('.keyboard').remove()
     document.body.children[0].insertAdjacentHTML('beforeend', '<div class="keyboard"></div>');
     loadKeyboard(lang);
