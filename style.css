@@ -40,12 +40,16 @@ body {
     line-height: 27px;
 }
 .button img {
+    position: relative;
     width: 10px;
     height: 10px;
+    z-index: -1;
 }
 .button sup {
+    position: relative;
     font-size: 10px;
     margin-left: 5px;
+    z-index: -1;
 }
 .backspace {
     width: 85px;
