@@ -37,6 +37,7 @@ class BtnSup extends Btn {
         if(this.lang === 'ru') return super.textBtn + `<sup>${this.supRu}</sup>`
         else return super.textBtn + `<sup>${this.supEng}</sup>`;
       }
+
     print() {
         if(this.shiftBtn) {
             if(this.lang === 'ru') return this.supRu
@@ -148,6 +149,7 @@ function clickListener(){
         if (event.target.id == 20 ){key30.capsLockBtn = !key30.capsLockBtn}
         if (event.target.id == 8 || event.target.id == 46){
             textAreaStack.pop(key30.capsLockBtn);
+
         } 
         else {
             textAreaStack.push(btn2.print(key30.capsLockBtn));
@@ -211,4 +213,3 @@ document.addEventListener('keyup', function(event) {
     clickListener();
      
 });
-
