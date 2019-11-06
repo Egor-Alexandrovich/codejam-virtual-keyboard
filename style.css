@@ -1,0 +1,80 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+.textarea-wrapper {
+    margin: 30px 0;
+}
+.textarea{
+    display: flex;
+    width: 100%;
+}
+.keyboard{
+    display: flex;
+    flex-direction: column;
+}
+.row0, .row1, .row2, .row3, .row4  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.button {
+    width: 37px;
+    height: 37px;
+    padding: 5px;
+    margin: 1px;
+    box-sizing: border-box;
+    border-radius: 3px;
+    border: 1px solid #000;
+    text-align: center;
+    line-height: 27px;
+    cursor: pointer;
+    transition: 1s;
+}
+.button img {
+    position: relative;
+    width: 10px;
+    height: 10px;
+    z-index: -1;
+}
+.button sup {
+    position: relative;
+    font-size: 10px;
+    margin-left: 5px;
+    z-index: -1;
+}
+.backspace {
+    width: 85px;
+}
+.tab {
+    width: 41px;
+}
+.caps {
+    width: 100px;
+}
+.enter {
+    width: 60px;
+}
+.shift {
+    width: 117px;
+}
+.shift2 {
+    width: 43px;
+}
+.space {
+    width: 320px;
+}
+.active {
+    background-color: red;
+    transition: .5s;
+}
