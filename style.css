@@ -38,6 +38,8 @@ body {
     border: 1px solid #000;
     text-align: center;
     line-height: 27px;
+    cursor: pointer;
+    transition: 1s;
 }
 .button img {
     position: relative;
@@ -74,4 +76,5 @@ body {
 }
 .active {
     background-color: red;
+    transition: .5s;
 }
